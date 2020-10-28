@@ -7,4 +7,4 @@ def loginFcn():
     userid = input("Enter Steam id: ")
     user = client.getUser(id64=userid)
     print(user.name)
-    
+    return user
