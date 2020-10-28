@@ -3,7 +3,7 @@
 import steamfront
 import csv
 import time
-import simplejson
+import simplejson.errors
 
 # opens the game list csv file we have
 with open("./steamgamelist.csv") as csvfile:
