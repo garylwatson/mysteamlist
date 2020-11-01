@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <title>testapp</title>
+        </head>
+        <body>
+            <h1>Games</h1>
+            <ul>
+                {% for game in games %}
+                <li>
+                    {{ game }}
+                </li>
+                {% endfor %}
+            </ul>
+        </body>
+</html>
