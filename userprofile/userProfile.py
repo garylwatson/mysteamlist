@@ -1,5 +1,6 @@
 import steamfront
 import csv
+import sys
 
 f = open("../steamapikey.txt")
 apikey = f.readline()
@@ -33,7 +34,7 @@ def buildProfile(user, id):
         profile = getUserProfile(id)
         list = getGameList(profile)
         games = getGameInfo(list)
-        csvwriter.writerow([user ,getSteamName(profile),games,len(games)])
+        csvwriter.writerow([user ,id, getSteamName(profile),games,len(games)])
 
 #done by Adam Johnson modified by Matthew Loehr
 def loginFcn():
@@ -41,6 +42,14 @@ def loginFcn():
     name = input("Enter mySteamList username: ")
     userid = input("Enter Steam id: ")
     client = steamfront.Client(apikey)
-    buildProfile(name, int(userid))
+    newprofile = True
+    with open("UserProfiles.csv", "r", newline="") as f:
+        csvreader = csv.reader(f)
+        for row in csvreader:
+            if userid == row[1]:
+                print("Welcome back!")
+                newprofile = False
+    if newprofile:
+        buildProfile(name, int(userid))
 
 loginFcn()
