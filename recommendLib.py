@@ -11,8 +11,17 @@ def recommendLibrary():
     client = steamfront.Client(API_KEY)
 
     # Input minimum metacritic score and number of recommendations
-    minScore = int(input("Enter minimum metacritic score for recommendations: "))
-    number = int(input("Enter maximum number of recommendations you want: "))
+    try:
+        minScore = int(input("Enter minimum metacritic score for recommendations: "))
+    except ValueError:
+        print("Score is not integer, defaulting to 75")
+        minScore = 75
+
+    try:
+        number = int(input("Enter maximum number of recommendations you want: "))
+    except:
+        print("Max recommendations is not an integer, defaulting to 5")
+        number = 5
 
     # Search through user's games for most played
     apps = user.apps
