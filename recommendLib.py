@@ -19,7 +19,7 @@ def recommendLibrary():
 
     try:
         number = int(input("Enter maximum number of recommendations you want: "))
-    except:
+    except ValueError:
         print("Max recommendations is not an integer, defaulting to 5")
         number = 5
 
