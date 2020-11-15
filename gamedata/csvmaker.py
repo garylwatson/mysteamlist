@@ -53,3 +53,4 @@ with open("./relevantgamedata.csv") as csvfile:
             genres[len(genres)-1]=genres[len(genres)-1][0:len(genres[len(genres)-1])-2]
             for i in range(len(genres)):
                 writer.writerow([appid,genres[i]])
+        f.close()

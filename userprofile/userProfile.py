@@ -22,7 +22,7 @@ def getGameInfo(list):
         try:
             game = list[i]
             game.unlazify()
-            gameDict[game.appid] = [game.name, game.play_time]
+            gameDict[game.appid] = game.play_time
         except steamfront.errors.AppNotFound:
             pass
     return gameDict
@@ -33,12 +33,31 @@ def getSteamName(profile):
 
 #creates a new entry in the profile csv when logging in with a username and steam ID
 def buildProfile(user, id):
+    prof = getUserProfile(id)
+    games = getGameList(prof)
+    titles = getGameInfo(games)
     with open("UserProfiles.csv", "a", newline="") as f:
         csvwriter = csv.writer(f)
-        profile = getUserProfile(id)
-        list = getGameList(profile)
-        games = getGameInfo(list)
-        csvwriter.writerow([user ,id, getSteamName(profile),games,len(games)])
+        csvwriter.writerow([id ,user])
+        f.close()
+    with open("steamNames.csv", "a", newline="") as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow([id, getSteamName(prof)])
+        f.close()
+    with open("steamGames.csv", "a", newline="") as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow(["steamid" ,"gameID", "playtime"])
+        for appid in titles:
+            csvwriter.writerow([id, appid, titles[appid]])
+        f.close()
+    with open("numGames.csv", "a", newline="") as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow(["steamid" ,"numGames"])
+        csvwriter.writerow(["steamid" ,len(titles)])
+        f.close()
+
+
+
 
 #done by Adam Johnson modified by Matthew Loehr
 #logs into mysteamlist when given the username and steam id
