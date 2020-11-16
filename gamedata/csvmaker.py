@@ -15,7 +15,7 @@ with open("./relevantgamedata.csv") as csvfile:
         for row in csv_reader:
             score = row[4]
             if score == "'metacritic'":
-                score = 0
+                score = -1
             else:
                 score = int(score[10:12])
             writer.writerow([row[0],row[1],score])
@@ -53,3 +53,4 @@ with open("./relevantgamedata.csv") as csvfile:
             genres[len(genres)-1]=genres[len(genres)-1][0:len(genres[len(genres)-1])-2]
             for i in range(len(genres)):
                 writer.writerow([appid,genres[i]])
+        f.close()
