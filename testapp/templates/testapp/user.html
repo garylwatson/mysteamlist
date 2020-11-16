@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<title>My Steam List</title>
+		<link rel="stylesheet" href="assets/msl.css">
+	</head>
+	<body class="centered-container" style="height: 100%;">
+		<div id="main-popup" class="popup-menu">
+			<h1>My Steam List</h1>
+			<span class="centered-container">
+				<input type="button" value="Login" onclick="return openPopup('login-popup')"/><br/>
+				<input type="button" value="Create Account" onclick="return openPopup('create-user-popup')"/>
+			</span>
+		</div>
+
+		<div id="login-popup" class="popup-menu" style="display: none">
+			<h1>Login</h1>
+			<form name="login-popup-form" method="POST" action="" onsubmit="return validateLogin()">
+				<input name="user" type="text" placeholder="Username"/>
+				<input name="pass" type="password" placeholder="Password"/>
+				<span class="form-buttons">
+					<input type="button" value="Cancel" onclick="return closePopup()"/>
+					<input type="submit" value="Submit"/>
+				</span>
+			</form>
+		</div>
+
+		<div id="create-user-popup" class="popup-menu" style="display: none">
+			<h1>New User</h1>
+			<form name="create-user-popup-form" method="POST" action="" onsubmit="return validateNewUser()">
+				<input name="name" type="text" placeholder="Full Name"/><br/>
+				<input name="user" type="text" placeholder="Username"/><br/>
+				<input name="steam" type="text" placeholder="Steam Info"/><br/>
+				<input name="pass1" type="password" placeholder="New Password"/><br/>
+				<input name="pass2" type="password" placeholder="Retype Password"/><br/>
+				<input name="pass" type="hidden"/>
+				<span class="form-buttons">
+					<input type="button" value="Cancel" onclick="return closePopup()"/>
+					<input type="submit" value="Submit"/>
+				</span>
+			</form>
+		</div>
+	</body>
+	<script>
+		function validateLogin() {
+			
+		}
+
+		function validateNewUser() {
+			var password1 = document.forms["create-user-popup-form"]["pass1"];
+			var password2 = document.forms["create-user-popup-form"]["pass2"];
+			
+			if (password1.value == "" || password2.value == "") {
+				alert("Passwords cannot be blank!");
+				password1.value = "";
+				password2.value = "";
+				return false;
+			}
+
+			if (password1.value != password2.value) {
+				alert("Passwords do not match!");
+				password1.value = "";
+				password2.value = "";
+				return false;
+			} else {
+				documents.forms["create-user-popup-form"]["pass"].value = password1.value;
+			}
+
+			alert("New user created successfully");
+			return true;
+		}
+
+		var target;
+		function openPopup(popupID) {
+			document.forms[popupID + "-form"].reset();
+			document.getElementById("main-popup").style.display = "none";
+			target = document.getElementById(popupID);
+			target.style.display = "block";
+		}
+		function closePopup() {
+			document.getElementById("main-popup").style.display = "block";
+			target.style.display = "none";
+			target = null;
+		}
+	</script>
+</html>

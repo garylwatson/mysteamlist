@@ -1,23 +1,25 @@
 from django.db import models
 
-# Create your models here.
-class  Game(models.Model):
-    name = models.CharField(max_length=100)
-    appid = models.IntegerField(primary_key=True)
-    score = models.IntegerField() #-1 = metacritic
+class Game(models.Model):
+    game_name = models.CharField(max_length=100)
+    game_appid = models.IntegerField()
+    game_score = models.IntegerField() #-1 = metacritic
+    game_genre = models.ManyToManyField('Genre')
+    game_categories = models.ManyToManyField('Category')
 
     def __str__(self):
-        return f"{self.name} - {self.appid} - {self.score}"
+        return f"{self.game_name} - {self.game_appid} - {self.game_score} - {self.game_genre} - {self.game_categories}"
 
-class Categories(models.Model):
-    name = models.ForeignKey(Game, on_delete=models.CASCADE)
-    categories = models.CharField(max_length=100)
+class Category(models.Model):
+    category_name = models.CharField(max_length=100)
+    category_description = models.TextField(blank=True, null=True)
 
 class Genre(models.Model):
-    name = models.ForeignKey(Game, on_delete=models.CASCADE)
-    genre = models.CharField(max_length=100)
+    genre_name = models.CharField(max_length=100)
+    genre_description = models.TextField(blank=True, null=True)
 
+    """
     #Return a formatted tuple 
     def __str__(self):
         return f"{self.name}, {self.appid}, {self.categories}, {self.genre}, {self.score}"
-
+    """
