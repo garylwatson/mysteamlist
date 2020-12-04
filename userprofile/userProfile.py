@@ -46,13 +46,11 @@ def buildProfile(user, id):
         f.close()
     with open("steamGames.csv", "a", newline="") as f:
         csvwriter = csv.writer(f)
-        csvwriter.writerow(["steamid" ,"gameID", "playtime"])
         for appid in titles:
             csvwriter.writerow([id, appid, titles[appid]])
         f.close()
     with open("numGames.csv", "a", newline="") as f:
         csvwriter = csv.writer(f)
-        csvwriter.writerow(["steamid" ,"numGames"])
         csvwriter.writerow(["steamid" ,len(titles)])
         f.close()
 
@@ -70,7 +68,7 @@ def loginFcn():
     with open("UserProfiles.csv", "r", newline="") as f:
         csvreader = csv.reader(f)
         for row in csvreader:
-            if userid == row[1]:
+            if userid == row[0]:
                 print("Welcome back!")
                 newprofile = False
     if newprofile:
