@@ -1,11 +1,13 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>My Steam List - Profile</title>
-		<link rel="stylesheet" href="assets/msl.css">
+		{% load static %}
+		<link rel="stylesheet" href="/static/test_app/msl.css">
 	</head>
 	<body style="display:flex; margin-left: 10vw; margin-right: 10vw; margin-top: 5vh;">
 		<div id="info-panel">
-			<img id="profile-picture" src="assets/profile_612x612.jpg" alt="Profile picture">
+			<img id="profile-picture" src="/static/test_app/generic-profile.png" alt="Profile picture">
 			<span id="username-value">UserName</span>
 			<span id="total-games-text"><span id="total-games-value">23</span> Games</span>
 			<input type="button" id="add-friend-button" onclick="" value="Add Friend">

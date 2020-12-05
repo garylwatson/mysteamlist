@@ -5,13 +5,17 @@ from .models import Game, Category, Genre
 
 # Create your views here.
 def index(request):
+    '''
     context = {
         "games": Game.objects.all()
     }
-    return render(request, "testapp/index.html", context)
+    '''
+    return render(request, "user.html")
 
+'''
 def user(request):
-    return render(request, "testapp/user.html")
+    return render(request, "user.html")
+'''
 
 def profile(request): #This will eventually become the actual index
-    return render(request, "testapp/profile.html")
+    return render(request, "profile.html")

@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>My Steam List</title>
-		<link rel="stylesheet" href="assets/msl.css">
+		<link rel="stylesheet" href="/static/test_app/msl.css">
 	</head>
 	<body class="centered-container" style="height: 100%;">
 		<div id="main-popup" class="popup-menu">
@@ -14,7 +14,7 @@
 
 		<div id="login-popup" class="popup-menu" style="display: none">
 			<h1>Login</h1>
-			<form name="login-popup-form" method="POST" action=".">
+			<form name="login-popup-form" method="POST" action="" onsubmit="return validateLogin()">
 				<input name="user" type="text" placeholder="Username"/>
 				<input name="pass" type="password" placeholder="Password"/>
 				<span class="form-buttons">
