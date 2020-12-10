@@ -1,16 +1,15 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<title>My Steam List - Profile</title>
-		{% load static %}
 		<link rel="stylesheet" href="/static/test_app/msl.css">
 	</head>
-	<body style="display:flex; margin-left: 10vw; margin-right: 10vw; margin-top: 5vh;">
+	<body style="display:flex; margin-left: 10vw; margin-right: 10vh; margin-top: 5vh;">
 		<div id="info-panel">
 			<img id="profile-picture" src="/static/test_app/generic-profile.png" alt="Profile picture">
 			<span id="username-value">UserName</span>
 			<span id="total-games-text"><span id="total-games-value">23</span> Games</span>
 			<input type="button" id="add-friend-button" onclick="" value="Add Friend">
+			<input type="button" id="get-recommendation-button" onclick="javascript:location.href='recommend.html'" value="Get Recommendation">
 		</div>
 		<div id="game-list-container">
 			<ul id="game-list">

@@ -6,5 +6,6 @@ from django.conf import settings
 urlpatterns = [
     path("", views.index), #when the user goes to this empty route send them to the index function in views.py
     #path("user/", views.user),
-    path("profile/", views.profile)
+    path("profile/", views.profile),
+    path("recommend/", views.recommend)
 ]

@@ -30,13 +30,13 @@ def getSteamName(profile):
     return profile.name  
 
 #creates a new entry in the profile csv when logging in with a username and steam ID
-def buildProfile(user, id):
+def buildProfile(user, id, pas):
     prof = getUserProfile(id)
     games = getGameList(prof)
     titles = getGameInfo(games)
     with open("userprofile/UserProfiles.csv", "a", newline="") as f:
         csvwriter = csv.writer(f)
-        csvwriter.writerow([id ,user])
+        csvwriter.writerow([id ,user, pas])
         f.close()
     with open("userprofile/steamNames.csv", "a", newline="") as f:
         csvwriter = csv.writer(f)
@@ -51,6 +51,7 @@ def buildProfile(user, id):
         csvwriter = csv.writer(f)
         csvwriter.writerow([id ,len(titles)])
         f.close()
+    return 'built'
 
 
 
@@ -66,10 +67,9 @@ def loginFcn(n, uid):
     with open("userprofile/UserProfiles.csv", "r", newline="") as f:
         csvreader = csv.reader(f)
         for row in csvreader:
-            if userid == row[0]:
-                return "Welcome back!"
+            if userid == row[2] and name == row[1]:
+                return "welcome back"
     if newprofile:
-        buildProfile(name, int(userid))
-        return "Bulit"
+        return "not found"
 
 #loginFcn("matt",76561198035639224)
